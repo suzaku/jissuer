@@ -34,6 +34,7 @@ func CreateSimpleIssue(cli *jr.Client, projectKey, summary, description, issueTy
 		sb := new(strings.Builder)
 		sb.Grow(int(resp.ContentLength))
 		io.Copy(sb, resp.Body)
+		// TODO: Parse detail error message from response body
 		log.Error(sb.String())
 		return nil, err
 	}
