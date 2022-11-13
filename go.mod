@@ -2,10 +2,12 @@ module changeme
 
 go 1.18
 
-require github.com/wailsapp/wails/v2 v2.2.0
+require (
+	github.com/andygrunwald/go-jira v1.16.0
+	github.com/wailsapp/wails/v2 v2.2.0
+)
 
 require (
-	github.com/andygrunwald/go-jira v1.16.0 // indirect
 	github.com/bep/debounce v1.2.1 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
