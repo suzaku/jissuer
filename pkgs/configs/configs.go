@@ -2,6 +2,7 @@ package configs
 
 import (
 	"encoding/json"
+	"log"
 	"os"
 	"path/filepath"
 
@@ -42,6 +43,10 @@ func loadFile(path string) (*Config, error) {
 }
 
 func (cfg *Config) saveFile(path string) error {
+	log.Printf("Saving configs to %s", path)
+	if err := ensureFolderExist(path); err != nil {
+		return err
+	}
 	fh, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		return err
@@ -53,4 +58,9 @@ func (cfg *Config) saveFile(path string) error {
 
 func (cfg *Config) Save() error {
 	return cfg.saveFile(configFile)
+}
+
+func ensureFolderExist(path string) error {
+	base := filepath.Dir(path)
+	return os.MkdirAll(base, 0766)
 }
