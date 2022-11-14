@@ -9,7 +9,6 @@
 </script>
 
 <main>
-  <div>{email}</div>
   <form on:submit|preventDefault={saveConfigs}>
     <label>
       BaseURL: <input type="text" bind:value={baseURL} >
