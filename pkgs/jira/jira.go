@@ -2,10 +2,10 @@ package jira
 
 import (
 	"io"
+	"log"
 	"strings"
 
 	jr "github.com/andygrunwald/go-jira"
-	"github.com/labstack/gommon/log"
 )
 
 // NewClient returns a new Jira API client.
@@ -35,7 +35,7 @@ func CreateSimpleIssue(cli *jr.Client, projectKey, summary, description, issueTy
 		sb.Grow(int(resp.ContentLength))
 		io.Copy(sb, resp.Body)
 		// TODO: Parse detail error message from response body
-		log.Error(sb.String())
+		log.Print(sb.String())
 		return nil, err
 	}
 	return created, nil
