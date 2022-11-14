@@ -20,12 +20,32 @@
       }
     })
   })
+
+  import Dropzone from "svelte-file-dropzone";
+
+  let files = {
+      accepted: [],
+      rejected: []
+  };
+
+  function handleFilesSelect(e) {
+      const { acceptedFiles, fileRejections } = e.detail;
+      files.accepted = [...files.accepted, ...acceptedFiles];
+      files.rejected = [...files.rejected, ...fileRejections];
+  }
 </script>
 
 <main>
     {#if !configLoaded}
+        <h1>Hello</h1>
         <SaveConfigs/>
     {:else}
-        <div>Your email is {email}</div>
+        <div>Hello {email}</div>
+        <Dropzone on:drop={handleFilesSelect} />
+        <ol>
+            {#each files.accepted as item}
+                <li>{item.name}</li>
+            {/each}
+        </ol>
     {/if}
 </main>
