@@ -1,4 +1,4 @@
-module changeme
+module github.com/suzaku/jissuer
 
 go 1.18
 
